@@ -32,6 +32,20 @@ services:
       POSTGRES_PASSWORD: mysecretpassword
     networks:
       - metanet1
+  # NOTE: Add this for only check datasource is not have any modify schema when connect metabase.
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
+      PGADMIN_DEFAULT_PASSWORD: user-name@domain-name.com
+    networks:
+      - metanet1
+    # volumes:
+    #   - pgadmin-data:/var/lib/pgadmin
 networks:
   metanet1:
     driver: bridge
